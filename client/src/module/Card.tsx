@@ -1,10 +1,9 @@
 import Head from "next/head";
-import React, { FC, useEffect, useState } from "react";
-import { getData } from "../api/agents";
-import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { FC } from "react";
 import styled from "styled-components";
-import { GetServerSideProps } from "next";
+import { getData } from "../api/agents";
 
 const Layout = styled.div`
   background-color: palegoldenrod;
@@ -42,7 +41,6 @@ interface ICard {
 const Card: FC<ICard> = () => {
   const router = useRouter();
   const { id } = router.query;
-  console.log("RPUTE", router, "ID", id);
 
   const { status, data, error, isFetching } = getData(id as string);
   if (status === "loading" && !isFetching) {
